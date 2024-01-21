@@ -1,0 +1,75 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #projects {
+            margin-bottom: 20px;
+        }
+
+        #activities {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        #activities th, #activities td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #activities th {
+            background-color: #f2f2f2;
+        }
+
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 2px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .overview-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 2px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #projectSummary, #monthSummary, #projectMonthSummary {
+            width: 50%;
+            margin-bottom: 20px;
+        }
+
+        #projectSummary th, #projectSummary td,
+        #monthSummary th, #monthSummary td,
+        #projectMonthSummary th, #projectMonthSummary td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #projectSummary th, #monthSummary th, #projectMonthSummary th {
+            background-color: #f2f2f2;
+        }
