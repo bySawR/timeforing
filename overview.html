@@ -1,0 +1,158 @@
+<!-- Overview Page (overview.html) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Management Overview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #projectSummary, #monthSummary, #projectMonthSummary {
+            width: 50%;
+            margin-bottom: 20px;
+        }
+
+        #projectSummary th, #projectSummary td,
+        #monthSummary th, #monthSummary td,
+        #projectMonthSummary th, #projectMonthSummary td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #projectSummary th, #monthSummary th, #projectMonthSummary th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Time Management Overview</h1>
+
+    <h2>Project Summary</h2>
+    <table id="projectSummary">
+        <thead>
+            <tr>
+                <th>Project</th>
+                <th>Total Duration (hours)</th>
+            </tr>
+        </thead>
+        <tbody id="projectSummaryList"></tbody>
+    </table>
+
+    <h2>Month Summary</h2>
+    <table id="monthSummary">
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>Total Duration (hours)</th>
+            </tr>
+        </thead>
+        <tbody id="monthSummaryList"></tbody>
+    </table>
+
+    <h2>Project-Month Summary</h2>
+    <table id="projectMonthSummary">
+        <thead>
+            <tr>
+                <th>Project</th>
+                <th>Month</th>
+                <th>Total Duration (hours)</th>
+            </tr>
+        </thead>
+        <tbody id="projectMonthSummaryList"></tbody>
+    </table>
+
+    <script>
+        // Load activities from local storage
+        var activities = JSON.parse(localStorage.getItem('activities')) || [];
+
+        function calculateProjectSummary() {
+            var projectSummary = {};
+            activities.forEach(function (activity) {
+                if (!projectSummary[activity.project]) {
+                    projectSummary[activity.project] = 0;
+                }
+                projectSummary[activity.project] += activity.duration;
+            });
+            return projectSummary;
+        }
+
+        function calculateMonthSummary() {
+            var monthSummary = {};
+            activities.forEach(function (activity) {
+                var month = new Date(activity.date).toLocaleString('en-us', { month: 'long' });
+                if (!monthSummary[month]) {
+                    monthSummary[month] = 0;
+                }
+                monthSummary[month] += activity.duration;
+            });
+            return monthSummary;
+        }
+
+        function calculateProjectMonthSummary() {
+            var projectMonthSummary = {};
+            activities.forEach(function (activity) {
+                var month = new Date(activity.date).toLocaleString('en-us', { month: 'long' });
+                var key = activity.project + '-' + month;
+                if (!projectMonthSummary[key]) {
+                    projectMonthSummary[key] = 0;
+                }
+                projectMonthSummary[key] += activity.duration;
+            });
+            return projectMonthSummary;
+        }
+
+        function displayProjectSummary() {
+            var projectSummaryList = document.getElementById("projectSummaryList");
+            var projectSummary = calculateProjectSummary();
+            for (var project in projectSummary) {
+                var newRow = projectSummaryList.insertRow();
+                var cell1 = newRow.insertCell(0);
+                var cell2 = newRow.insertCell(1);
+                cell1.innerHTML = project;
+                cell2.innerHTML = projectSummary[project];
+            }
+        }
+
+        function displayMonthSummary() {
+            var monthSummaryList = document.getElementById("monthSummaryList");
+            var monthSummary = calculateMonthSummary();
+            for (var month in monthSummary) {
+                var newRow = monthSummaryList.insertRow();
+                var cell1 = newRow.insertCell(0);
+                var cell2 = newRow.insertCell(1);
+                cell1.innerHTML = month;
+                cell2.innerHTML = monthSummary[month];
+            }
+        }
+
+        function displayProjectMonthSummary() {
+            var projectMonthSummaryList = document.getElementById("projectMonthSummaryList");
+            var projectMonthSummary = calculateProjectMonthSummary();
+            for (var key in projectMonthSummary) {
+                var parts = key.split('-');
+                var project = parts[0];
+                var month = parts[1];
+                var newRow = projectMonthSummaryList.insertRow();
+                var cell1 = newRow.insertCell(0);
+                var cell2 = newRow.insertCell(1);
+                var cell3 = newRow.insertCell(2);
+                cell1.innerHTML = project;
+                cell2.innerHTML = month;
+                cell3.innerHTML = projectMonthSummary[key];
+            }
+        }
+
+        // Display project, month, and project-month summaries on page load
+        displayProjectSummary();
+        displayMonthSummary();
+        displayProjectMonthSummary();
+    </script>
+
+</body>
+</html>
