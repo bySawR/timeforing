@@ -54,6 +54,7 @@ table {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
+    width: auto;
 }
 
 #activities th {
@@ -97,6 +98,10 @@ table {
 #monthSummary th,
 #projectMonthSummary th {
     background-color: #f2f2f2;
+}
+
+section {
+    padding: 10px 20px;
 }
 
 header {
