@@ -1,6 +1,7 @@
 <!-- Main Page -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,93 +11,96 @@
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 </head>
+
 <body>
     <header>
-        <a href="index.html"><div class="header-name">Timefører</div></a>
+        <a href="index.html">
+            <div class="header-name">Timefører</div>
+        </a>
         <div class="overview-button"><button class="overview-btn" onclick="navigateToOverview()">Overview</button></div>
     </header>
-<div class="add-wrapper">
-    <button onclick="showModalProject()">Add Project</button>
-    <button onclick="showModalActivity()">Add Activity</button>
+    <div class="add-wrapper">
+        <button onclick="showModalProject()">Nytt prosjekt</button>
+        <button onclick="showModalActivity()">Ny timeføring</button>
     </div>
-<!-- Projects Modal -->
-<div id="projectsModal" class="modal">
-    <div id="projectsModalContent" class="modalContent">
-        <button class="close-btn" onclick="closeModal('projectsModal')">✕</button>
-        <div id="projects">
-            <label for="projectName">Project Name:</label>
-            <input type="text" id="projectName">
-            <button onclick="addProject()">Add Project</button>
+    <!-- Projects Modal -->
+    <div id="projectsModal" class="modal">
+        <div id="projectsModalContent" class="modalContent">
+            <button class="close-btn" onclick="closeModal('projectsModal')">✕</button>
+            <div id="projects">
+                <label for="projectName">Project Name:</label>
+                <input type="text" id="projectName">
+                <button onclick="addProject()">Add Project</button>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Activity Modal -->
-<div id="activityModal" class="modal">
-    <div id="activityModalContent" class="modalContent">
-        <button class="close-btn" onclick="closeModal('activityModal')">✕</button>
-        <div id="activity">
-            <label for="activityName">Activity Name:</label>
-            <input type="text" id="activityName">
-            <label for="startTime">Start Time:</label>
-            <input type="time" id="startTime">
-            <label for="endTime">End Time:</label>
-            <input type="time" id="endTime">
-            <label for="date">Date (optional):</label>
-            <input type="date" id="date">
-            <label for="projectSelector">Project:</label>
-            <select id="projectSelector"></select>
-            <button onclick="addActivity()">Add Activity</button>
+    <!-- Activity Modal -->
+    <div id="activityModal" class="modal">
+        <div id="activityModalContent" class="modalContent">
+            <button class="close-btn" onclick="closeModal('activityModal')">✕</button>
+            <div id="activity">
+                <label for="activityName">Activity Name:</label>
+                <input type="text" id="activityName">
+                <label for="startTime">Start Time:</label>
+                <input type="time" id="startTime">
+                <label for="endTime">End Time:</label>
+                <input type="time" id="endTime">
+                <label for="date">Date (optional):</label>
+                <input type="date" id="date">
+                <label for="projectSelector">Project:</label>
+                <select id="projectSelector"></select>
+                <button onclick="addActivity()">Add Activity</button>
+            </div>
         </div>
     </div>
-</div>
-<section>
+    <section>
 
-    <table id="activities">
-        <thead>
-            <tr>
-                <th>Project</th>
-                <th>Activity</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>Duration (hours)</th>
-                <th>Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="activityList"></tbody>
-    </table>
-</section>
+        <table id="activities">
+            <thead>
+                <tr>
+                    <th>Project</th>
+                    <th>Activity</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Duration (hours)</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="activityList"></tbody>
+        </table>
+    </section>
     <script>
 
-function closeModal(modalId) {
-        var modal = document.getElementById(modalId);
-        modal.style.display = "none";
-    }
-
-function showModalProject() {
-        var modalProject = document.getElementById("projectsModal");
-        modalProject.style.display = "block";
-    }
-
-    function showModalActivity() {
-        var modalActivity = document.getElementById("activityModal");
-        modalActivity.style.display = "block";
-    }
-
-    // Close modals when clicking outside the modal content
-    window.onclick = function (event) {
-        var modalProject = document.getElementById("projectsModal");
-        var modalActivity = document.getElementById("activityModal");
-
-        if (event.target === modalProject) {
-            modalProject.style.display = "none";
+        function closeModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "none";
         }
 
-        if (event.target === modalActivity) {
-            modalActivity.style.display = "none";
+        function showModalProject() {
+            var modalProject = document.getElementById("projectsModal");
+            modalProject.style.display = "block";
         }
-    };
+
+        function showModalActivity() {
+            var modalActivity = document.getElementById("activityModal");
+            modalActivity.style.display = "block";
+        }
+
+        // Close modals when clicking outside the modal content
+        window.onclick = function (event) {
+            var modalProject = document.getElementById("projectsModal");
+            var modalActivity = document.getElementById("activityModal");
+
+            if (event.target === modalProject) {
+                modalProject.style.display = "none";
+            }
+
+            if (event.target === modalActivity) {
+                modalActivity.style.display = "none";
+            }
+        };
 
         // Load projects from local storage
         var projects = JSON.parse(localStorage.getItem('projects')) || [];
@@ -231,4 +235,5 @@ function showModalProject() {
     </script>
 
 </body>
+
 </html>
