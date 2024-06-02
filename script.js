@@ -1,4 +1,3 @@
-
         // Load projects from local storage
         var projects = JSON.parse(localStorage.getItem('projects')) || [];
         var projectSelector = document.getElementById("projectSelector");
@@ -11,9 +10,6 @@
                 projectSelector.add(option);
             });
         }
-
-        // Load activities from local storage
-        var activities = JSON.parse(localStorage.getItem('activities')) || [];
 
         function addProject() {
             var projectName = document.getElementById("projectName").value;
@@ -29,12 +25,14 @@
             document.getElementById("projectName").value = "";
         }
 
+        // Load activities from local storage
+        var activities = JSON.parse(localStorage.getItem('activities')) || [];
+
         function addActivity() {
             var activityName = document.getElementById("activityName").value;
             var startTime = document.getElementById("startTime").value;
             var endTime = document.getElementById("endTime").value;
             var date = document.getElementById("date").value;
-            var projectSelector = document.getElementById("projectSelector");
             var selectedProject = projectSelector.options[projectSelector.selectedIndex].text;
 
             if (activityName.trim() === "") {
@@ -101,6 +99,23 @@
             localStorage.setItem('activities', JSON.stringify(activities));
             row.parentNode.removeChild(row);
         }
+
+        function closeModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "none";
+        }
+
+        function showModalActivity() {
+            var modalActivity = document.getElementById("activityModal");
+            modalActivity.style.display = "block";
+        }
+
+        window.onclick = function (event) {
+            var modalActivity = document.getElementById("activityModal");
+            if (event.target === modalActivity) {
+                modalActivity.style.display = "none";
+            }
+        };
 
         function navigateToOverview() {
             window.location.href = "overview.html";

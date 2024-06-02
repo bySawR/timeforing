@@ -20,25 +20,19 @@
         <div class="overview-button"><button class="overview-btn" onclick="navigateToOverview()">Overview</button></div>
     </header>
     <div class="add-wrapper">
-        <button onclick="showModalProject()">Nytt prosjekt</button>
         <button onclick="showModalActivity()">Ny timeføring</button>
-    </div>
-    <!-- Projects Modal -->
-    <div id="projectsModal" class="modal">
-        <div id="projectsModalContent" class="modalContent">
-            <button class="close-btn" onclick="closeModal('projectsModal')">✕</button>
-            <div id="projects">
-                <label for="projectName">Project Name:</label>
-                <input type="text" id="projectName">
-                <button onclick="addProject()">Add Project</button>
-            </div>
-        </div>
     </div>
 
     <!-- Activity Modal -->
     <div id="activityModal" class="modal">
+
         <div id="activityModalContent" class="modalContent">
             <button class="close-btn" onclick="closeModal('activityModal')">✕</button>
+            <div id="projects">
+                <label for="projectName">New Project Name:</label>
+                <input type="text" id="projectName">
+                <button onclick="addProject()">Add Project</button>
+            </div>
             <div id="activity">
                 <label for="activityName">Activity Name:</label>
                 <input type="text" id="activityName">
@@ -52,10 +46,11 @@
                 <select id="projectSelector"></select>
                 <button onclick="addActivity()">Add Activity</button>
             </div>
+
         </div>
     </div>
-    <section>
 
+    <section>
         <table id="activities">
             <thead>
                 <tr>
